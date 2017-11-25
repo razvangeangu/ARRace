@@ -15,6 +15,8 @@
 		18FF05E21FC9C7CD006D7014 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18FF05E01FC9C7CD006D7014 /* LaunchScreen.storyboard */; };
 		18FF05ED1FC9C7CD006D7014 /* ARRaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF05EC1FC9C7CD006D7014 /* ARRaceTests.swift */; };
 		18FF05F81FC9C7CD006D7014 /* ARRaceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF05F71FC9C7CD006D7014 /* ARRaceUITests.swift */; };
+		18FF06061FC9C87D006D7014 /* RGExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF06051FC9C87D006D7014 /* RGExtensions.swift */; };
+		18FF06081FC9C8A7006D7014 /* ARRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF06071FC9C8A7006D7014 /* ARRing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		18FF05F31FC9C7CD006D7014 /* ARRaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARRaceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FF05F71FC9C7CD006D7014 /* ARRaceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRaceUITests.swift; sourceTree = "<group>"; };
 		18FF05F91FC9C7CD006D7014 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18FF06051FC9C87D006D7014 /* RGExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGExtensions.swift; sourceTree = "<group>"; };
+		18FF06071FC9C8A7006D7014 /* ARRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARRing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				18FF05D51FC9C7CD006D7014 /* AppDelegate.swift */,
 				18FF05D71FC9C7CD006D7014 /* art.scnassets */,
 				18FF05D91FC9C7CD006D7014 /* ViewController.swift */,
+				18FF06051FC9C87D006D7014 /* RGExtensions.swift */,
+				18FF06071FC9C8A7006D7014 /* ARRing.swift */,
 				18FF05DB1FC9C7CD006D7014 /* Main.storyboard */,
 				18FF05DE1FC9C7CD006D7014 /* Assets.xcassets */,
 				18FF05E01FC9C7CD006D7014 /* LaunchScreen.storyboard */,
@@ -263,7 +269,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FF06061FC9C87D006D7014 /* RGExtensions.swift in Sources */,
 				18FF05DA1FC9C7CD006D7014 /* ViewController.swift in Sources */,
+				18FF06081FC9C8A7006D7014 /* ARRing.swift in Sources */,
 				18FF05D61FC9C7CD006D7014 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
