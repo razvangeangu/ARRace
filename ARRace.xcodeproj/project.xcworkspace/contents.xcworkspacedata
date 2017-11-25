@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ARRace.xcodeproj">
+      location = "self:/Users/rgeangu/Desktop/ARRace/ARRace.xcodeproj">
    </FileRef>
 </Workspace>

@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -55,13 +55,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.isUserInteractionEnabled = true
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        // let scene = SCNScene()
+        // let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene()
         
         // Set the scene to the view
         sceneView.scene = scene
         
+        addRing(from: SCNVector3(0, 0, 0))
+        
         initUIElements()
+        
+        // We can get the ARFrame from the session
+        sceneView.session.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +84,67 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Pause the view's session
         sceneView.session.pause()
+    }
+    
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        let deviceTransform = frame.camera.transform
+        let nodeTransform = ringNode.transform
+        
+        // Get the position in x y z in the scene view of the ring
+        let nodePosition = SCNVector3(
+            nodeTransform.m41,
+            nodeTransform.m42,
+            nodeTransform.m43
+        )
+        
+        // Get the position in x y z in the scene view of the device
+        let devicePosition = SCNVector3(
+            deviceTransform.columns.3.x,
+            deviceTransform.columns.3.y,
+            deviceTransform.columns.3.z
+        )
+        
+        let offset: Float = 0.5
+        
+        if isInLimits(devicePosition.x, nodePosition.x, offset) {
+            // If our device is located not more than 0.5m left and right then...
+            
+            if isInLimits(devicePosition.y, nodePosition.y, offset) {
+                // If our device is located no more than 0.5m up and down
+                
+                if isInLimits(devicePosition.z, nodePosition.z, offset) {
+                    // If our device is located no more than 0.5m away on the z axis
+                    
+                    generator.impactOccurred()
+                    ringNode.removeFromParentNode()
+                    addRing(from: devicePosition)
+                    
+                    userScore += 1
+                    
+                    if !timerIsRunning {
+                        self.runTimer()
+                        timerIsRunning = true
+                    }
+                }
+            }
+        }
+    }
+    
+    func isInLimits(_ val1: Float, _ val2: Float, _ offset: Float) -> Bool {
+        return val1 - offset < val2 && val1 + offset > val2
+    }
+    
+    func addRing(from: SCNVector3) {
+        ringNode = ARRing()
+        
+        let posX: Float = floatBetween(Float(-1), and: Float(1))
+        let posY: Float = 0
+        ringNode.position = SCNVector3(posX, posY, from.z - 0.5)
+        sceneView.scene.rootNode.addChildNode(ringNode)
+    }
+    
+    func floatBetween(_ firstValue: Float, and secondValue: Float) -> Float {
+        return (Float(arc4random()) / Float(UInt32.max)) * (firstValue - secondValue) + secondValue
     }
     
     fileprivate func initUIElements() {
